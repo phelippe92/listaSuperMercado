@@ -15,6 +15,15 @@
                 sub-lista
                     comida
                     bebida
+
+        vizualizar
+            comida
+                vegetariana
+                        for n in listaComida:
+                            if n[2] == True
+                                print n
+                != vegetariana
+            bebida
 """
 
 import f
@@ -25,7 +34,6 @@ listGeralComida = []
 listGeralBebida = []
 listComida = []
 listBebida = []
-
 # ╔═╦═╗
 # ║ ║ ║
 # ╠═╬═╣
@@ -34,21 +42,18 @@ listBebida = []
 while True:
     os.system('clear')
 
-    print('╔══════════════════════════════════════════════════════════╗')
-    print('║    >>>>>>>>>>>>    Lista De Compras    <<<<<<<<<<<<<<    ║')
-    print('╚══════════════════════════════════════════════════════════╝')
+    #   primeira tela
+    f.menu('telaLista')
     print('* COMIDA')
     f.viewListas(listGeralComida)
-    # print(listGeralComida)
-    # f.view(listComida)  #   mostra um valor por linha
     print('* BEBIDA')
     f.viewListas(listGeralBebida)
-    print('____________________________________________________________')
-
-    if (len(listGeralComida) or len(listGeralBebida)) == 0:
-        f.menu(11)   #   print menu
+    
+    if (len(listGeralComida) or len(listGeralBebida)) != 0:
+        f.menu(1)   #   print menu
     else:
-        f.menu(1)
+        f.menu(11)
+    #---------------------x-------------------x------------------
         
     a = f.acao()
     
@@ -81,8 +86,6 @@ while True:
                 
                 listComida[0:0] = [nome+' '+horario]
 
-                # listComida.insert(0, horario)
-                # listComida.insert(0, nome)
                 f.add(listComida[:], listGeralComida)
 
         elif a == '2':    #   bebida
@@ -111,10 +114,10 @@ while True:
 
                 listBebida[0:0] = [nome+' '+horario]
 
-                # listBebida.insert(0, horario)
-                # listBebida.insert(0, nome)
                 f.add(listBebida[:], listGeralBebida)
 
-    # z = input()
-    # if z != '':
-    #     break
+    elif a == '4':
+        break
+
+
+        l = ['nome+horario', comida('nome', qt, bool)]

@@ -1,15 +1,9 @@
-from datetime import datetime
 
-
-def viewListas(lista):
-    now = datetime.now()
-    data = str(now.day)+'/'+str(now.month)+'/'+str(now.year)
-    time = str(now.hour)+':'+str(now.minute)+':'+str(int(now.second))
-    # data = '[' + str(now.day) + '/' + str(now.month) + '/' + str(now.year) + ']'+
-    
+def viewListas(lista):  #   mostra listas dentro da geral
     for n in lista:
         x = lista.index(n) + 1
-        print('  └──» ', x,'. ', n[0], '[', data, time, ']')
+        print('  └──» ', x,'. ', n[0])    # 0 = nomeda lista, 1 = horario
+        
 
 def view(lista):    #   mostra um valor por linha
     for n in lista:

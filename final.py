@@ -21,22 +21,29 @@ import f
 import os
 import time
 
-listGeral = []
+listGeralComida = []
+listGeralBebida = []
 listComida = []
 listBebida = []
-
+# ╔═╦═╗
+# ║ ║ ║
+# ╠═╬═╣
+# ╚═╩═╝
 #  START
 while True:
     os.system('clear')
 
-    print('++++++++++    Lista de compras    ++++++++++')
+    print('╔══════════════════════════════════════════════════════════╗')
+    print('║    >>>>>>>>>>>>    Lista De Compras    <<<<<<<<<<<<<<    ║')
+    print('╚══════════════════════════════════════════════════════════╝')
     print('* COMIDA')
-    f.view(listComida)
+    f.viewListas(listGeralComida)
+    # f.view(listComida)  #   mostra um valor por linha
     print('* BEBIDA')
-    f.view(listBebida)
-    print('-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+')
+    f.view(listGeralBebida)
+    print('____________________________________________________________')
 
-    if len(listGeral) == 0:
+    if (len(listGeralComida) or len(listGeralBebida)) == 0:
         f.menu(11)   #   print menu
     else:
         f.menu(1)
@@ -44,6 +51,7 @@ while True:
     a = f.acao()
     
     if a == '1':  #   adicionar
+        os.system('clear')
         f.menu('adicionar')
         a = f.acao()
         if a == '1':  #   comida
@@ -51,14 +59,22 @@ while True:
             while True:
                 os.system('clear')
 
+                os.system('clear')
                 f.view(listComida)
                 comida = f.comida()
                 
                 if comida == 'sair':
                     break
-
                 f.add(comida, listComida)
-                f.add(listComida, listGeral)
+            os.system('clear')
+            x = input('Salvar?\n1. Sim\n2. Nao\n>> ')
+            if x == ('1' or 'sim'):
+                nome = input('Nome da lista:\n>> ')
+                listComida.insert(0, nome)
+                f.add(listComida, listGeralComida)
+            else:
+                listComida[:] = []
+
         elif a == '2':    #   bebida
             os.system('clear')
             
@@ -66,6 +82,7 @@ while True:
             while True:
                 os.system('clear')
 
+                os.system('clear')
                 f.view(listBebida)
                 bebida = f.bebida()
 
@@ -73,13 +90,8 @@ while True:
                     break
 
                 f.add(bebida, listBebida)
-                f.add(listBebida, listGeral)
+                f.add(listBebida, listGeralBebida)
 
     # z = input()
     # if z != '':
     #     break
-
-    
-    
-
-

@@ -1,17 +1,17 @@
+from datetime import datetime
 
 def viewListas(lista):  #   mostra listas dentro da geral
     for n in lista:
         x = lista.index(n) + 1
         print('  └──» ', x,'. ', n[0])    # 0 = nomeda lista, 1 = horario
-        
 
 def view(lista):    #   mostra um valor por linha
     for n in lista:
         x = lista.index(n) + 1
-        print('  └──» ', x,'. ', lista[lista.index(n)])
+        print('  └──» ', x,'. ', n)    # 0 = nomeda lista, 1 = horario
 
 def add(adicionado, destino):
-    destino.append(adicionado)
+    destino.insert(0, adicionado)
 
 def comida():      
     a = input('Digite sair p/ sair\nEnter p/ continuar\n>> ')
@@ -54,16 +54,20 @@ def bebida():
 def menu(a): #   a = qual menu
     #   MENU INICIAL
     if a == 11:
-        print('1. Adicionar')
+        print('________________________________________________________________________')
+        print('1. Adicionar         4. Sair')
 
     elif a == 1:
-        print('1. Adicionar             2. Remover          3. Vizualizar')
+        print('________________________________________________________________________')
+        print('1. Adicionar             2. Remover          3. Vizualizar       4. Sair')
 
     #---------------------x-------------------x------------------
     #   ADICIONAR
     elif a == 'adicionar':
-        print('ADICIONAR')
-        print('\n')
+        print('╔══════════════════════════════════════════════════════════════════════╗')
+        print('║    >>>>>>>>>>>>>>>>>>>>>    ADICIONAR    <<<<<<<<<<<<<<<<<<<<<<<<    ║')
+        print('╚══════════════════════════════════════════════════════════════════════╝')
+        print('________________________________________________________________________')
         print('1. Comida        2. Bebida')
 
     #---------------------x-------------------x------------------
@@ -73,8 +77,31 @@ def menu(a): #   a = qual menu
 
         print('REMOVER')
         print('\n')
+    
+    #---------------------x-------------------x------------------
+    elif a == 'telaLista':
+        print('╔══════════════════════════════════════════════════════════════════════╗')
+        print('║    >>>>>>>>>>>>>>>>>>    Lista De Compras    <<<<<<<<<<<<<<<<<<<<    ║')
+        print('╚══════════════════════════════════════════════════════════════════════╝')
 
-def acao():
-    a = input('>> ')
-    return(a)
+def addComida(listComida):
+        view(listComida)
+        c = comida()
+        
+        if c == 'sair':
+            return False
+        else:
+            add(c, listComida)
+            return True
 
+def addBebida(listBebida):
+        view(listBebida)
+        c = bebida()
+        
+        if c == 'sair':
+            return False
+        else:
+            add(c, listBebida)
+            return True
+
+def save(list, listGeral):

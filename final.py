@@ -1,123 +1,65 @@
+""" 
+l = ['a', 'b', 'c']
 
-#   LISTA SUPERMERCADO
+a = open('test.txt', 'w')#
 
-"""   
-    lista geral
-        adicionar
-            comida
-                vegetariana(true)
-                    salvar
-            bebida
-                alcoolica(true)
-                    salvar
-        remover
-            lista geral
-                sub-lista
-                    comida
-                    bebida
+for n in l:
+    a.write(n+' ')
 
-        vizualizar
-            comida
-                vegetariana
-                        for n in listaComida:
-                            if n[2] == True
-                                print n
-                != vegetariana
-            bebida
+a.close() 
+
+a = open("test.txt")
+v = []
+v.append(a.readlines())
+print(a.readlines())
+
+a.close()
+
+print('v = ', type(v), v) 
 """
 
-import f
-import os
-from datetime import datetime
 
-listGeralComida = []
-listGeralBebida = []
-listComida = []
-listBebida = []
-# ╔═╦═╗
-# ║ ║ ║
-# ╠═╬═╣
-# ╚═╩═╝
-#  START
-while True:
-    os.system('clear')
 
-    #   primeira tela
-    f.menu('telaLista')
-    print('* COMIDA')
-    f.viewListas(listGeralComida)
-    print('* BEBIDA')
-    f.viewListas(listGeralBebida)
-    
-    if (len(listGeralComida) or len(listGeralBebida)) != 0:
-        f.menu(1)   #   print menu
+""" 
+import csv
+lista = [] # você só precisa de uma lista - ela é uma matriz multidimensional
+
+with open('meu.csv', newline='') as csvfile:
+    # o nome 'spamreader' abaixo é só exemplo, poderia ser qq. coisa
+    spamreader = csv.reader(csvfile, delimiter=',') # separe por vírgula
+
+    # o módulo csv detectará novas linhas automaticamente
+    for linha in spamreader:
+        lista.append(linha)
+
+# os elementos começam ser contados em zero, i.e. lista[0][1] == 'julian'
+print(lista) # imprime a linha 2 da lista, inteira
+# print(lista) # imprime apenas o segundo item da linha 2 
+# """
+
+f = open("meu.csv",'r')
+texto = f.readlines()
+
+x = 0
+
+while x < len(texto):
+    if texto[x] == "\n":
+        local = texto.index(texto[x])
+        texto.pop(local)
     else:
-        f.menu(11)
-    #---------------------x-------------------x------------------
-        
-    a = f.acao()
-    
-    if a == '1':  #   adicionar
-        os.system('clear')
-        f.menu('adicionar')
-        a = f.acao()
-        if a == '1':  #   comida
-            print('qual comida')
-            listComida[:] = []
-            while True:
-                os.system('clear')
+        texto[x] = texto[x].split(',')
+        x += 1
 
-                f.view(listComida)
-                comida = f.comida()
-                
-                if comida == 'sair':
-                    break
-                f.add(comida, listComida)
-            
-            os.system('clear')
-            x = input('Salvar?\n1. Sim\n2. Nao\n>> ')
-            if x == ('1' or 'sim'):
-                nome = input('Nome da lista:\n>> ')
+# Esse for abaixo aqui é só para tirar o "\n" em algumas strings, é opcional.
 
-                now = datetime.now()
-                data = str(now.day)+'/'+str(now.month)+'/'+str(now.year)
-                time = str(now.hour)+':'+str(now.minute)+':'+str(int(now.second))
-                horario = '['+data+' '+time+']'
-                
-                listComida[0:0] = [nome+' '+horario]
-
-                f.add(listComida[:], listGeralComida)
-
-        elif a == '2':    #   bebida
-            print('qual bebida')
-            listBebida[:] = []
-            while True:
-                os.system('clear')
-
-                f.view(listBebida)
-                bebida = f.bebida()
-
-                if bebida == 'sair':
-                    break
-
-                f.add(bebida, listBebida)
-                
-            os.system('clear')
-            x = input('Salvar?\n1. Sim\n2. Nao\n>> ')
-            if x == '1' or x == 'sim' or x == 's':
-                nome = input('Nome da lista:\n>> ')
-                
-                now = datetime.now()
-                data = str(now.day)+'/'+str(now.month)+'/'+str(now.year)
-                time = str(now.hour)+':'+str(now.minute)+':'+str(int(now.second))
-                horario = '['+data+' '+time+']'
-
-                listBebida[0:0] = [nome+' '+horario]
-
-                f.add(listBebida[:], listGeralBebida)
-
-    elif a == '4':
-        break
+for i in texto:
+    local = texto.index(i) # Local do i em texto
+    for b in i:
+        local2 = texto[local].index(b) # Local2 do b em i ( local )
+        if "\n" in b:
+            texto[local][local2] = b.replace("\n",'') # Substitui o valor de acordo com "local" e "local2"
 
 
-        l = ['nome+horario', comida('nome', qt, bool)]
+lista1, lista2 = texto
+print("lista1 =",lista1)
+print("lista2 =",lista2)

@@ -1,17 +1,28 @@
-import os
+from datetime import datetime
+
+
+def viewListas(lista):
+    now = datetime.now()
+    data = str(now.day)+'/'+str(now.month)+'/'+str(now.year)
+    time = str(now.hour)+':'+str(now.minute)+':'+str(int(now.second))
+    # data = '[' + str(now.day) + '/' + str(now.month) + '/' + str(now.year) + ']'+
+    
+    for n in lista:
+        x = lista.index(n) + 1
+        print('  └──» ', x,'. ', n[0], '[', data, time, ']')
 
 def view(lista):    #   mostra um valor por linha
     for n in lista:
-        print('     ', n)
+        x = lista.index(n) + 1
+        print('  └──» ', x,'. ', lista[lista.index(n)])
 
 def add(adicionado, destino):
     destino.append(adicionado)
 
-def comida():  
-    os.system('clear')    
-    a = input('Digite sair p/ sair\nEnter p/ continuar\n')
+def comida():      
+    a = input('Digite sair p/ sair\nEnter p/ continuar\n>> ')
     if a == 'sair':
-            return 'sair'
+            return a
 
     nome = input('Nome Do Alimento \n>> ')
     qt = input('Quantidade \n>> ')
@@ -20,12 +31,14 @@ def comida():
     if vegetariano == ('2' or 'nao'):
         vegetariano = False
 
+    if nome == '' or qt == '' or vegetariano == '':
+        return None
+    
     comida = (nome, int(qt), bool(vegetariano))
     
     return comida
 
-def bebida():  
-    os.system('clear')
+def bebida():
     a = input('Digite sair p/ sair\nEnter p/ continuar\n')
     if a == 'sair':
             return 'sair'
@@ -36,14 +49,12 @@ def bebida():
     
     if alcoolica == ('2' or 'nao'):
         alcoolica = False
+    if nome == '' or qt == '' or alcoolica == '':
+        return None
 
     bebida = (nome, int(qt), bool(alcoolica))
 
     return bebida
-
-def acao():
-    a = input('>> ')
-    return(a)
 
 #   PRINT
 def menu(a): #   a = qual menu
@@ -57,8 +68,6 @@ def menu(a): #   a = qual menu
     #---------------------x-------------------x------------------
     #   ADICIONAR
     elif a == 'adicionar':
-        os.system('clear')  
-
         print('ADICIONAR')
         print('\n')
         print('1. Comida        2. Bebida')
@@ -70,4 +79,8 @@ def menu(a): #   a = qual menu
 
         print('REMOVER')
         print('\n')
-        
+
+def acao():
+    a = input('>> ')
+    return(a)
+

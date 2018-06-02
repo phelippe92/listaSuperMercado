@@ -1,65 +1,79 @@
-""" 
-l = ['a', 'b', 'c']
 
-a = open('test.txt', 'w')#
+#   LISTA SUPERMERCADO
 
-for n in l:
-    a.write(n+' ')
+"""   
+    lista geral
+        adicionar
+            comida
+                vegetariana(true)
+                    salvar
+            bebida
+                alcoolica(true)
+                    salvar
+        
+        remover
+            lista geral
+                sub-lista
+                    comida
+                    bebida
 
-a.close() 
-
-a = open("test.txt")
-v = []
-v.append(a.readlines())
-print(a.readlines())
-
-a.close()
-
-print('v = ', type(v), v) 
+        vizualizar
+            comida
+                vegetariana
+                        for n in listaComida:
+                            if n[2] == True
+                                print n
+                != vegetariana
+            bebida
 """
 
+import f
+import os
+from datetime import datetime
 
+listGeralComida = []
+listGeralBebida = []
+listComida = []
+listBebida = []
 
-""" 
-import csv
-lista = [] # você só precisa de uma lista - ela é uma matriz multidimensional
+# ╔═╦═╗
+# ║ ║ ║
+# ╠═╬═╣
+# ╚═╩═╝
+#  START
+while True:
+    os.system('clear')
+    f.start(listGeralComida, listGeralBebida)
+   
+    #---------------------x-------------------x------------------
+        
+    a = input('>> ')
+    
+    if a == '1':  #   adicionar
+        os.system('clear')
+        f.menu('adicionar')
+        a = input('>> ')
+        if a == '1':  #   comida
+            listComida[:] = []
 
-with open('meu.csv', newline='') as csvfile:
-    # o nome 'spamreader' abaixo é só exemplo, poderia ser qq. coisa
-    spamreader = csv.reader(csvfile, delimiter=',') # separe por vírgula
+            while True:
+                os.system('clear')
+                if not f.addComida(listComida): #   sair da lista
+                    break
+            
+            os.system('clear')
+            f.save(listComida, listGeralComida) #   salvar lista
 
-    # o módulo csv detectará novas linhas automaticamente
-    for linha in spamreader:
-        lista.append(linha)
+        elif a == '2':    #   bebidaa
+            listBebida[:] = []
+            while True:
+                os.system('clear')
+                if not f.addBebida(listBebida): #   sair da lista
+                    break
+                
+            os.system('clear')
+            f.save(listBebida, listGeralBebida) #   salvar lista
 
-# os elementos começam ser contados em zero, i.e. lista[0][1] == 'julian'
-print(lista) # imprime a linha 2 da lista, inteira
-# print(lista) # imprime apenas o segundo item da linha 2 
-# """
+    elif a == '4':
+        break
 
-f = open("meu.csv",'r')
-texto = f.readlines()
-
-x = 0
-
-while x < len(texto):
-    if texto[x] == "\n":
-        local = texto.index(texto[x])
-        texto.pop(local)
-    else:
-        texto[x] = texto[x].split(',')
-        x += 1
-
-# Esse for abaixo aqui é só para tirar o "\n" em algumas strings, é opcional.
-
-for i in texto:
-    local = texto.index(i) # Local do i em texto
-    for b in i:
-        local2 = texto[local].index(b) # Local2 do b em i ( local )
-        if "\n" in b:
-            texto[local][local2] = b.replace("\n",'') # Substitui o valor de acordo com "local" e "local2"
-
-
-lista1, lista2 = texto
-print("lista1 =",lista1)
-print("lista2 =",lista2)

@@ -1,3 +1,4 @@
+import os
 from datetime import datetime
 
 def viewListas(lista):  #   mostra listas dentro da geral
@@ -105,3 +106,58 @@ def addBebida(listBebida):
             return True
 
 def save(list, listGeral):
+    print('________________________________________________________________________')
+    print('Enter -> Salvar         Outro -> Sair Sem Salvar')
+    x = input('>> ')
+    if x == '':
+        nome = input('Nome da lista:\n>> ')
+
+        now = datetime.now()
+        data = str(now.day)+'/'+str(now.month)+'/'+str(now.year)
+        time = str(now.hour)+':'+str(now.minute)+':'+str(int(now.second))
+        horario = '['+data+' '+time+']'
+        
+        list[0:0] = [nome+' '+horario]
+
+        add(list[:], listGeral)
+
+def adicionar(a, listComida, listBebida):
+    # menu('adicionar')
+    # a = input('>> ')
+    if a == '1':  #   comida
+        listComida[:] = []
+
+        while True:
+            os.system('clear')
+            if not addComida(listComida): #   sair da lista
+                break
+        
+        return 'comida'
+        # os.system('clear')
+        # save(listComida, listGeralComida) #   salvar lista
+
+    elif a == '2':    #   bebida
+        listBebida[:] = []
+        while True:
+            os.system('clear')
+            if not addBebida(listBebida): #   sair da lista
+                break
+        
+        return bebida
+            
+        # os.system('clear')
+        # save(listBebida, listGeralBebida) #   salvar lista
+
+
+def start(listGeralComida, listGeralBebida):
+    #   primeira tela
+    menu('telaLista')
+    print('* COMIDA')
+    viewListas(listGeralComida)
+    print('\n* BEBIDA')
+    viewListas(listGeralBebida)
+    
+    if (len(listGeralComida) or len(listGeralBebida)) != 0:
+        menu(1)   #   print menu
+    else:
+        menu(11) 
